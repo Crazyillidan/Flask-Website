@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}Add a New Game{% endblock %}
+
+{% block content %}
+    <h1>Add a New Game</h1>
+
+    <form action="{{ url_for('add_game') }}" method="POST">
+        <input type="text" name="name" placeholder="Game Name" required>
+        <input type="text" name="platform" placeholder="Platform" required>
+        <input type="number" name="release_year" placeholder="Release Year" required>
+        <button type="submit">Add Game</button>
+    </form>
+{% endblock %}
