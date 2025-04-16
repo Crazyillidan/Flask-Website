@@ -17,9 +17,9 @@
             <tbody>
                 {% for game in games %}
                 <tr>
-                    <td>{{ game.name }}</td>
-                    <td>{{ game.platform }}</td>
-                    <td>{{ game.release_year }}</td>
+                    <td>{{ game['name'] }}</td>
+                    <td>{{ game['platform'] }}</td>
+                    <td>{{ game['release_year'] }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

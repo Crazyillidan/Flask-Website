@@ -1,6 +1,5 @@
 
 function validateForm(event) {
-
     event.preventDefault();
 
     const nameInput = document.getElementById("name");
@@ -39,4 +38,6 @@ function validateForm(event) {
     }
 }
 
-document.getElementById("gameForm").addEventListener("submit", validateForm);
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("gameForm").addEventListener("submit", validateForm);
+});
