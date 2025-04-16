@@ -9,10 +9,11 @@
         <p style="color: red;">{{ error }}</p>
     {% endif %}
 
-    <form id="gameForm" action="{{ url_for('add_game') }}" method="POST">
+    <form id="gameForm" action="{{ url_for('add_game') }}" method="POST" enctype="multipart/form-data">
         <input type="text" id="name" name="name" placeholder="Game Name">
         <input type="text" id="platform" name="platform" placeholder="Platform">
         <input type="number" id="release_year" name="release_year" placeholder="Release Year">
+        <input type="file" id="game_file" name="game_file">
         <button type="submit">Add Game</button>
     </form>
 

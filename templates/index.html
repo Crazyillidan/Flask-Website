@@ -12,6 +12,7 @@
                     <th>Name</th>
                     <th>Platform</th>
                     <th>Release Year</th>
+                    <th>File</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,6 +21,13 @@
                     <td>{{ game['name'] }}</td>
                     <td>{{ game['platform'] }}</td>
                     <td>{{ game['release_year'] }}</td>
+                    <td>
+                        {% if game['filename'] %}
+                            <img src="{{ url_for('static', filename='images/' ~ game.filename) }}" width="100">
+                        {% else %}
+                            No file
+                        {% endif %}
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
