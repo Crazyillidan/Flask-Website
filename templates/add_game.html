@@ -5,10 +5,16 @@
 {% block content %}
     <h1>Add a New Game</h1>
 
-    <form action="{{ url_for('add_game') }}" method="POST">
-        <input type="text" name="name" placeholder="Game Name" required>
-        <input type="text" name="platform" placeholder="Platform" required>
-        <input type="number" name="release_year" placeholder="Release Year" required>
+    <form id="gameForm" action="{{ url_for('add_game') }}" method="POST">
+        <input type="text" id="name" name="name" placeholder="Game Name">
+        <input type="text" id="platform" name="platform" placeholder="Platform">
+        <input type="number" id="release_year" name="release_year" placeholder="Release Year">
         <button type="submit">Add Game</button>
     </form>
+
+    <p id="errorMessage" style="color: red; display: none;">Invalid inputs.</p>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='validate.js') }}"></script>
 {% endblock %}
