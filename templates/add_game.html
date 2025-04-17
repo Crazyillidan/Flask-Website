@@ -3,25 +3,39 @@
 {% block title %}Add a New Game{% endblock %}
 
 {% block content %}
-    <h1>Add a New Game</h1>
+<div class="card shadow p-4">
+    <h2 class="mb-4">Add a New Game</h2>
 
     {% if error %}
-        <p style="color: red;">{{ error }}</p>
+        <div class="alert alert-danger">{{ error }}</div>
     {% endif %}
 
     <form id="gameForm" action="{{ url_for('add_game') }}" method="POST" enctype="multipart/form-data">
-        <input type="text" id="name" name="name" placeholder="Game Name">
-        <input type="text" id="platform" name="platform" placeholder="Platform">
-        <input type="number" id="release_year" name="release_year" placeholder="Release Year">
+        <div class="mb-3">
+            <label for="name" class="form-label">Game Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter game name">
+        </div>
+        <div class="mb-3">
+            <label for="platform" class="form-label">Platform</label>
+            <input type="text" class="form-control" id="platform" name="platform" placeholder="Enter platform">
+        </div>
+        <div class="mb-3">
+            <label for="release_year" class="form-label">Release Year</label>
+            <input type="number" class="form-control" id="release_year" name="release_year" placeholder="e.g., 2022">
+        </div>
+        <div class="mb-3">
+            <label for="game_file" class="form-label">Upload Image</label>
+            <input type="file" class="form-control" id="game_file" name="game_file" accept="image/*">
+        </div>
 
-        <label for="game_file">Upload an image:</label>
-        <input type="file" id="game_file" name="game_file" accept="image/*">
+        <p id="errorMessage" class="text-danger" style="display: none;"></p>
 
-        <button type="submit">Add Game</button>
+        <button type="submit" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Add Game
+        </button>
     </form>
-
-    <p id="errorMessage" style="color: red; display: none;">Invalid inputs.</p>
-    <script src="{{ url_for('static', filename='validate.js') }}"></script>
+</div>
+<script src="{{ url_for('static', filename='validate.js') }}"></script>
 {% endblock %}
 
 

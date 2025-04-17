@@ -80,10 +80,16 @@ def add_game():
 
     return render_template('add_game.html', error=error)
 
-@app.route('/delete/<int:game_id>')
+@app.route('/delete/<int:game_id>', methods=['POST'])
 def delete_game(game_id):
     games = session.get('games', [])
     if 0 <= game_id < len(games):
+        filename = games[game_id].get('filename')
+        if filename:
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            if os.path.exists(filepath):
+                os.remove(filepath)
+
         games.pop(game_id)
         session['games'] = games
     return redirect(url_for('home'))
