@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from datetime import datetime
 from werkzeug.utils import secure_filename
 from flask_session import Session
+import uuid
 import os
 
 UPLOAD_FOLDER = 'static/images'
@@ -55,8 +56,11 @@ def add_game():
                 error = f"Release year must be between 1950 and {current_year}."
 
         if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            original_filename = secure_filename(file.filename)
+            ext = original_filename.rsplit('.', 1)[1].lower()
+            unique_name = f"{uuid.uuid4().hex}.{ext}"
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], unique_name))
+            filename = unique_name
 
         if error:
             return render_template('add_game.html', error=error)
@@ -75,6 +79,14 @@ def add_game():
         return redirect(url_for('home'))
 
     return render_template('add_game.html', error=error)
+
+@app.route('/delete/<int:game_id>')
+def delete_game(game_id):
+    games = session.get('games', [])
+    if 0 <= game_id < len(games):
+        games.pop(game_id)
+        session['games'] = games
+    return redirect(url_for('home'))
 
 @app.route('/clear')
 def clear():

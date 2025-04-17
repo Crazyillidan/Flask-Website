@@ -12,7 +12,8 @@
                     <th>Name</th>
                     <th>Platform</th>
                     <th>Release Year</th>
-                    <th>File</th>
+                    <th>Image</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,10 +24,15 @@
                     <td>{{ game['release_year'] }}</td>
                     <td>
                         {% if game['filename'] %}
-                            <img src="{{ url_for('static', filename='images/' ~ game.filename) }}" width="100">
+                            <img src="{{ url_for('static', filename='images/' ~ game['filename']) }}" width="100" alt="Game Image">
                         {% else %}
-                            No file
+                            No Image
                         {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ url_for('delete_game', game_id=loop.index0) }}" onclick="return confirm('Are you sure you want to delete this game?');">
+                            Delete
+                        </a>
                     </td>
                 </tr>
                 {% endfor %}

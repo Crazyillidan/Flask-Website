@@ -10,9 +10,9 @@
     {% endif %}
 
     <form id="gameForm" action="{{ url_for('add_game') }}" method="POST" enctype="multipart/form-data">
-        <input type="text" id="name" name="name" placeholder="Game Name" required>
-        <input type="text" id="platform" name="platform" placeholder="Platform" required>
-        <input type="number" id="release_year" name="release_year" placeholder="Release Year" required>
+        <input type="text" id="name" name="name" placeholder="Game Name">
+        <input type="text" id="platform" name="platform" placeholder="Platform">
+        <input type="number" id="release_year" name="release_year" placeholder="Release Year">
 
         <label for="game_file">Upload an image:</label>
         <input type="file" id="game_file" name="game_file" accept="image/*">
